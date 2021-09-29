@@ -1,3 +1,33 @@
+def ord(lista,inicio,fim):
+    if (fim <= inicio):
+        return
+    else:
+        inst=lista[fim]
+        comparador = inicio
+        for j in range(inicio,fim):
+            if lista[j] <= inst:
+                lista[comparador],lista[j] = lista[j],lista[comparador]
+                comparador += 1
+        lista[comparador],lista[fim] = lista[fim],lista[comparador]
+        ord(lista,inicio,comparador-1)
+        ord(lista,comparador+1,fim)
+
+
+def ord_id(lista,inicio,fim):
+    if (fim <= inicio):
+        return
+    else:
+        inst = lista[fim][1]
+        comparador = inicio
+        for j in range(inicio,fim):
+            if lista[j][1] <= inst:
+                lista[comparador],lista[j] = lista[j],lista[comparador]
+                comparador +=1
+        lista[comparador],lista[fim] = lista[fim],lista[comparador]
+        ord_id(lista,inicio,comparador-1)
+        ord_id(lista,comparador+1,fim)
+
+
 def class_idade(idade : int):
     if idade < 12:
         return "criança"
@@ -16,28 +46,31 @@ def nova_pes(pessoas : dict):
     return
 
 def lista_of(pessoas : dict):
-    for k in sorted(pessoas):
+    nomes = list(pessoas.keys())
+    ord(nomes,0,len(pessoas)-1)
+    for k in nomes:
         print(f"{k}, {class_idade(pessoas[k])} com {pessoas[k]} anos")
     return 
 
 def lista_idade(pessoas : dict):
-    pessoas = dict(sorted(pessoas.items(), key=lambda item: item[1]))
-    for k in pessoas:
-        print(f"{k}, {class_idade(pessoas[k])} com {pessoas[k]} anos ")
+    tuple_idade = list(pessoas.items())
+    ord_id(tuple_idade,0,len(tuple_idade)-1)
+    for k in tuple_idade:
+        print(f"{k[0]}, {class_idade(k[1])} com {k[1]} anos ")
     return
 
 def main():
     print("Bem vindo ao gerenciamento de pessoas!")
     pessoas={}
     while True:
-        opcoes = int(input("Insira o número referente a opção que você deseja: 1 para adicionar uma nova pessoas, 2 para visualizar as pessoas por ordem alfabética, 3 para visualizar as pessoas por idade, 4 para sair\n"))
-        if opcoes == 1:
+        opcoes = input("Insira o número referente a opção que você deseja: 1 para adicionar uma nova pessoas, 2 para visualizar as pessoas por ordem alfabética, 3 para visualizar as pessoas por idade, 4 para sair\n")
+        if opcoes == "1":
             nova_pes(pessoas)
-        elif opcoes ==2:
+        elif opcoes =="2":
             lista_of(pessoas)
-        elif opcoes==3:
+        elif opcoes=="3":
             lista_idade(pessoas)
-        elif opcoes==4:
+        elif opcoes=="4":
             print("Até mais!")
             break
         else:    

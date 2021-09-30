@@ -63,7 +63,7 @@ def main():
     print("Bem vindo ao gerenciamento de pessoas!")
     pessoas={}
     while True:
-        opcoes = input("Insira o número referente a opção que você deseja: 1 para adicionar uma nova pessoas, 2 para visualizar as pessoas por ordem alfabética, 3 para visualizar as pessoas por idade, 4 para sair\n")
+        opcoes = input("Insira o número referente a opção que você deseja: 1 para adicionar uma nova pessoa, 2 para visualizar as pessoas por ordem alfabética, 3 para visualizar as pessoas por idade, 4 para sair\n")
         if opcoes == "1":
             nova_pes(pessoas)
         elif opcoes =="2":

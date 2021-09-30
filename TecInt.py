@@ -40,6 +40,9 @@ def class_idade(idade : int):
 
 def nova_pes(pessoas : dict):
     nome = input("Por favor, insira o nome da pessoa:  ")
+    if nome == "":
+        print("Por favor, insira um nome válido")
+        return
     nome = nome[0].upper() + nome[1:]
     idade= int(input("Por favor, insira a idade da pessoa:  "))
     pessoas[nome] = idade
